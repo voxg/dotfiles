@@ -1,0 +1,5 @@
+require('voxg.set')
+require('voxg.plugins')
+require('voxg.keymap')
+require('voxg.bufferline')
+require('voxg.nvimtree')
