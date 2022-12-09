@@ -15,5 +15,7 @@ vim.opt.smartindent = true
 
 vim.opt.termguicolors = true
 
+vim.opt.colorcolumn = "80,100"
+
 vim.g.mapleader = " "
 
