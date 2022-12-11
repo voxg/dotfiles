@@ -16,6 +16,24 @@ return require('packer').startup(function(use)
     },
     -- tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+
+  use { 'folke/which-key.nvim' }
+
+  use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+          {'nvim-lua/plenary.nvim' },
+          {'BurntSushi/ripgrep' },
+      },
+  }
+
+  use { 'windwp/nvim-autopairs' }
+
+  use {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
+  }
   -- Simple plugins can be specified as strings
 --  use 'rstacruz/vim-closer'
 --
