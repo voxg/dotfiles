@@ -6,8 +6,8 @@ vim.cmd([[nnoremap <leader>x :NvimTreeToggle<CR> "Open file explorer"]])
 
 -- Shift-h/l to navigate buffers via BufferLine
 vim.cmd([[nnoremap H :BufferLineCyclePrev<CR>]])
-vim.cmd([[nnoremap J :BufferLineCycleNext<CR>]])
-vim.cmd([[nnoremap K :BufferLineCyclePrev<CR>]])
+-- vim.cmd([[nnoremap J :BufferLineCycleNext<CR>]])
+-- vim.cmd([[nnoremap K :BufferLineCyclePrev<CR>]])
 vim.cmd([[nnoremap L :BufferLineCycleNext<CR>]])
 
 -- Ctrl-h/j/k/l to navigate windows

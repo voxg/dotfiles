@@ -5,7 +5,9 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'folke/tokyonight.nvim'
+  -- use 'folke/tokyonight.nvim'
+
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   use {'akinsho/bufferline.nvim', requires = 'nvim-tree/nvim-web-devicons'}
 
@@ -34,6 +36,11 @@ return require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
   }
+
+  use { 'lewis6991/gitsigns.nvim' }
+
+  use { 'feline-nvim/feline.nvim' }
+
   -- Simple plugins can be specified as strings
 --  use 'rstacruz/vim-closer'
 --
