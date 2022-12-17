@@ -2,19 +2,17 @@
 -- vim.cmd([[nnoremap <leader>x :Ex<CR>]])
 
 -- x = eXplorer with NvimTree
-vim.cmd([[nnoremap <leader>x :NvimTreeToggle<CR> "Open file explorer"]])
+vim.keymap.set('n', '<leader>x', ":NvimTreeToggle<CR>")
 
 -- Shift-h/l to navigate buffers via BufferLine
-vim.cmd([[nnoremap H :BufferLineCyclePrev<CR>]])
--- vim.cmd([[nnoremap J :BufferLineCycleNext<CR>]])
--- vim.cmd([[nnoremap K :BufferLineCyclePrev<CR>]])
-vim.cmd([[nnoremap L :BufferLineCycleNext<CR>]])
+vim.keymap.set('n', 'H', [[<Cmd>BufferLineCyclePrev<CR>]])
+vim.keymap.set('n', 'L', [[<Cmd>BufferLineCycleNext<CR>]])
 
 -- Ctrl-h/j/k/l to navigate windows
-vim.cmd([[noremap <C-h> <C-w><C-h>]])
-vim.cmd([[noremap <C-j> <C-w><C-j>]])
-vim.cmd([[noremap <C-k> <C-w><C-k>]])
-vim.cmd([[noremap <C-l> <C-w><C-l>]])
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
 
 local wk = require('which-key')
 wk.register({
