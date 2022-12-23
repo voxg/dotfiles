@@ -63,7 +63,14 @@ return require('packer').startup(function(use)
 
   use { 'feline-nvim/feline.nvim' }
 
-  use { 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+  use {
+      'nvim-orgmode/orgmode',
+      config = function ()
+          require('orgmode').setup{}
+      end
+  }
 
   -- Simple plugins can be specified as strings
 --  use 'rstacruz/vim-closer'
