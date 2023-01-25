@@ -34,6 +34,19 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format {async=true} end, bufopts)
 end
 
+local lua_on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    require('lspconfig').sumneko_lua.setup({
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = {'vim'}
+                }
+            }
+        }
+    })
+end
+
 require('lspconfig')['sumneko_lua'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
