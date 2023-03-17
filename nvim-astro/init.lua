@@ -1,32 +1,23 @@
 local config = {
+
     plugins = {
-        -- Add plugins; use Packer syntax without the "use"
-        init = {
-            {
-                'nvim-neorg/neorg',
-                config = function()
-                    require('neorg').setup {
-                        load = {
-                            ["core.defaults"] = {
-                                config = {
-                                    disable = {
-                                        "core.keybinds",
-                                    },
-                                },
+        {
+            "nvim-neorg/neorg",
+            build = ":Neorg sync parsers",
+            opts = {
+                load = {
+                    ["core.defaults"] = {},
+                    ["core.norg.concealer"] = {},
+                    ["core.norg.dirman"] = {
+                        config = {
+                            workspaces = {
+                                notes = "~/norgnotes",
                             },
-                            ["core.norg.concealer"] = {},
-                            ["core.norg.dirman"] = {
-                                config = {
-                                    workspaces = {
-                                        notes = "~/norgnotes",
-                                    },
-                                },
-                            },
-                        }
-                    }
-                end,
-                requires = 'nvim-lua/plenary.nvim',
+                        },
+                    },
+                },
             },
+            dependencies = { { 'nvim-lua/plenary.nvim' } },
         },
     },
 
