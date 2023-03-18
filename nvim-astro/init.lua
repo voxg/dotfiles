@@ -89,7 +89,12 @@ local config = {
             --          }
             --      }
             -- }
-        }
+        },
+        formatting = {
+            disabled = {
+                "powershell_es",
+            },
+        },
     },
 
     ["which-key"] = {
@@ -114,9 +119,14 @@ local config = {
         },
     },
 
+    updater = { channel = "stable", },
+
     -- Function to run last
     polish = function()
         -- vim.cmd("Neorg sync-parsers")
+        require('nvim-autopairs').setup({
+            disable_filetype = { "TelescopePrompt", "ps1" },
+        })
     end
 }
 
