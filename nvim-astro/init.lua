@@ -31,6 +31,11 @@ local config = {
             dependencies = { { 'nvim-lua/plenary.nvim' } },
             lazy = false,
         },
+        {
+            "catppuccin/nvim",
+            name = "catppuccin",
+            lazy = false,
+        },
     },
 
     -- sets vim.x.y options
@@ -97,25 +102,14 @@ local config = {
         },
     },
 
-    ["which-key"] = {
-        -- Add bindings which show up as group name
-        register = {
-            -- first key is mode, n == normal mode
-            n = {
-                -- second key is the prefix, <leader> prefixes
-                ["<leader>"] = {
-                    -- third key is the key to bring up the next level
-                    ["n"] = { name = "Neorg" },
-                },
-            },
-        },
-    },
-
     mappings = {
         -- first key is the mode
         n = {
             -- second key is the left side of the map
-            ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "index"}
+            ["<leader>n"] = { desc = "Neorg" },
+            ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "Neorg index"},
+            ["H"] = { "<cmd>bprevious<cr>", desc = "Previous buffer"},
+            ["L"] = { "<cmd>bnext<cr>", desc = "Next buffer"},
         },
     },
 
