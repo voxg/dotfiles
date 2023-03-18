@@ -13,11 +13,23 @@ local config = {
                             workspaces = {
                                 notes = "~/norgnotes",
                             },
+                            default_workspace = "notes",
+                        },
+                    },
+                    ["core.export"] = {
+                        config = {
+                            export_dir = "~/mdnotes/<export-dir>"
+                        }
+                    },
+                    ["core.export.markdown"] = {
+                        config = {
+                            extensions = "all",
                         },
                     },
                 },
             },
             dependencies = { { 'nvim-lua/plenary.nvim' } },
+            lazy = false,
         },
     },
 
@@ -59,7 +71,7 @@ local config = {
             splitbelow = true,
         },
         g = {
-
+            maplocalleader = " ",
         },
     },
 
