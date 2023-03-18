@@ -1,32 +1,35 @@
 local config = {
+
     plugins = {
-        -- Add plugins; use Packer syntax without the "use"
-        init = {
-            {
-                'nvim-neorg/neorg',
-                config = function()
-                    require('neorg').setup {
-                        load = {
-                            ["core.defaults"] = {
-                                config = {
-                                    disable = {
-                                        "core.keybinds",
-                                    },
-                                },
+        {
+            "nvim-neorg/neorg",
+            build = ":Neorg sync parsers",
+            opts = {
+                load = {
+                    ["core.defaults"] = {},
+                    ["core.norg.concealer"] = {},
+                    ["core.norg.dirman"] = {
+                        config = {
+                            workspaces = {
+                                notes = "~/norgnotes",
                             },
-                            ["core.norg.concealer"] = {},
-                            ["core.norg.dirman"] = {
-                                config = {
-                                    workspaces = {
-                                        notes = "~/norgnotes",
-                                    },
-                                },
-                            },
+                            default_workspace = "notes",
+                        },
+                    },
+                    ["core.export"] = {
+                        config = {
+                            export_dir = "~/mdnotes/<export-dir>"
                         }
-                    }
-                end,
-                requires = 'nvim-lua/plenary.nvim',
+                    },
+                    ["core.export.markdown"] = {
+                        config = {
+                            extensions = "all",
+                        },
+                    },
+                },
             },
+            dependencies = { { 'nvim-lua/plenary.nvim' } },
+            lazy = false,
         },
     },
 
@@ -68,7 +71,7 @@ local config = {
             splitbelow = true,
         },
         g = {
-
+            maplocalleader = " ",
         },
     },
 
@@ -86,7 +89,12 @@ local config = {
             --          }
             --      }
             -- }
-        }
+        },
+        formatting = {
+            disabled = {
+                "powershell_es",
+            },
+        },
     },
 
     ["which-key"] = {
@@ -111,9 +119,14 @@ local config = {
         },
     },
 
+    updater = { channel = "stable", },
+
     -- Function to run last
     polish = function()
         -- vim.cmd("Neorg sync-parsers")
+        require('nvim-autopairs').setup({
+            disable_filetype = { "TelescopePrompt", "ps1" },
+        })
     end
 }
 
