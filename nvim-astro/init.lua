@@ -134,13 +134,15 @@ local config = {
             ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "Neorg index"},
             ["<leader>P"] = {
                 function()
+                    local p = require('peek')
                     local buf = vim.api.nvim_get_current_buf() 
                     local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-                    if ft == 'markdown' then
-                        local p = require('peek')
-                        if p.is_open() then
-                            p.close()
-                        else
+                    -- If the Peek preview is open, you can close it from any buffer...
+                    if p.is_open() then
+                        p.close()
+                    else
+                        -- ...but you can only start Peek from a .md buffer
+                        if ft == 'markdown' then
                             p.open()
                         end
                     end
