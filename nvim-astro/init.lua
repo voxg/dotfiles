@@ -41,7 +41,19 @@ local config = {
             "lunarvim/darkplus.nvim",
             name = "darkplus",
             lazy = false,
-        }
+        },
+        -- 
+        -- To fix line breaks the way Davy likes them, after update edit
+        -- ~/.local/share/nvim/lazy/peek.nvim/app/src/markdownit.ts and add
+        --     breaks: true,
+        -- to the object passed to
+        --     const md = new MarkdownIt('default', {
+        --
+        {
+            'toppair/peek.nvim',
+            build = 'deno task --quiet build:fast',
+            ft = 'markdown'
+        },
     },
 
     -- sets vim.x.y options
@@ -117,6 +129,21 @@ local config = {
             -- second key is the left side of the map
             ["<leader>n"] = { desc = "Neorg" },
             ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "Neorg index"},
+            ["<leader>P"] = {
+                function()
+                    local buf = vim.api.nvim_get_current_buf() 
+                    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+                    if ft == 'markdown' then
+                        local p = require('peek')
+                        if p.is_open() then
+                            p.close()
+                        else
+                            p.open()
+                        end
+                    end
+                end,
+                desc = "Toggle Markdown Peek"
+            },
             ["H"] = {
                 function ()
                     require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
