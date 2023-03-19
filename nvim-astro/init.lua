@@ -1,5 +1,6 @@
 local config = {
 
+    colorscheme = "catppuccin-frappe",
     plugins = {
         {
             "nvim-neorg/neorg",
@@ -36,6 +37,11 @@ local config = {
             name = "catppuccin",
             lazy = false,
         },
+        {
+            "lunarvim/darkplus.nvim",
+            name = "darkplus",
+            lazy = false,
+        }
     },
 
     -- sets vim.x.y options
