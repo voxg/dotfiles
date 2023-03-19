@@ -80,6 +80,9 @@ local config = {
             -- [[ Splits ]]
             splitright = true,
             splitbelow = true,
+
+            -- [[ which-key timeout ]]
+            timeoutlen=300,
         },
         g = {
             maplocalleader = " ",
