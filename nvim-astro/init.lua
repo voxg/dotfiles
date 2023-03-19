@@ -95,6 +95,9 @@ local config = {
 
             -- [[ which-key timeout ]]
             timeoutlen=300,
+
+            -- [[ pretty wrapped lines ]]
+            showbreak = "└─"
         },
         g = {
             maplocalleader = " ",
