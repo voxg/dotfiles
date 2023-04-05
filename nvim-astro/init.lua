@@ -2,34 +2,39 @@ local config = {
 
     colorscheme = "catppuccin-frappe",
     plugins = {
+        -- {
+        --     "nvim-neorg/neorg",
+        --     build = ":Neorg sync parsers",
+        --     opts = {
+        --         load = {
+        --             ["core.defaults"] = {},
+        --             ["core.norg.concealer"] = {},
+        --             ["core.norg.dirman"] = {
+        --                 config = {
+        --                     workspaces = {
+        --                         notes = "~/norgnotes",
+        --                     },
+        --                     default_workspace = "notes",
+        --                 },
+        --             },
+        --             ["core.export"] = {
+        --                 config = {
+        --                     export_dir = "~/mdnotes/<export-dir>"
+        --                 }
+        --             },
+        --             ["core.export.markdown"] = {
+        --                 config = {
+        --                     extensions = "all",
+        --                 },
+        --             },
+        --         },
+        --     },
+        --     dependencies = { { 'nvim-lua/plenary.nvim' } },
+        --     lazy = false,
+        -- },
         {
-            "nvim-neorg/neorg",
-            build = ":Neorg sync parsers",
-            opts = {
-                load = {
-                    ["core.defaults"] = {},
-                    ["core.norg.concealer"] = {},
-                    ["core.norg.dirman"] = {
-                        config = {
-                            workspaces = {
-                                notes = "~/norgnotes",
-                            },
-                            default_workspace = "notes",
-                        },
-                    },
-                    ["core.export"] = {
-                        config = {
-                            export_dir = "~/mdnotes/<export-dir>"
-                        }
-                    },
-                    ["core.export.markdown"] = {
-                        config = {
-                            extensions = "all",
-                        },
-                    },
-                },
-            },
-            dependencies = { { 'nvim-lua/plenary.nvim' } },
+            'ekickx/clipboard-image.nvim',
+            name = "clipboard-image",
             lazy = false,
         },
         {
@@ -130,8 +135,28 @@ local config = {
         -- first key is the mode
         n = {
             -- second key is the left side of the map
-            ["<leader>n"] = { desc = "Neorg" },
-            ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "Neorg index"},
+            -- ["<leader>n"] = { desc = "Neorg" },
+            -- ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "Neorg index"},
+            ["<leader>i"] = {
+                function ()
+                    require('clipboard-image.paste').paste_img()
+                end,
+                desc = "Paste image",
+
+            },
+            ["<leader>n"] = { desc = "Notes" },
+            ["<leader>nd"] = {
+                function ()
+                    vim.cmd(os.date("edit ~/notes/journals/%Y-%m-%d.md"))
+                end,
+                desc = "Edit today's journal",
+            },
+            ["<leader>nt"] = {
+                function()
+                    require('telescope.builtin').live_grep({default_text='\\[ \\]', cwd='~/notes'})
+                end,
+                desc = "Live grep to-do items",
+            },
             ["<leader>P"] = {
                 function()
                     local p = require('peek')
