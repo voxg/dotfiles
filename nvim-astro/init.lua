@@ -157,6 +157,18 @@ local config = {
                 end,
                 desc = "Live grep to-do items",
             },
+            ["<leader>nu"] = {
+                function()
+                    require('telescope.builtin').live_grep({default_text=':(ups|downs):', cwd='~/notes'})
+                end,
+                desc = "Live grep ups and downs",
+            },
+            ["<leader>nc"] = {
+                function()
+                    require('telescope.builtin').live_grep({default_text=':capex:', cwd='~/notes'})
+                end,
+                desc = "Live grep capital time reporting",
+            },
             ["<leader>P"] = {
                 function()
                     local p = require('peek')
