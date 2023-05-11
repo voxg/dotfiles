@@ -32,11 +32,11 @@ local config = {
         --     dependencies = { { 'nvim-lua/plenary.nvim' } },
         --     lazy = false,
         -- },
-        {
-            'ekickx/clipboard-image.nvim',
-            name = "clipboard-image",
-            lazy = false,
-        },
+        -- {
+        --     'ekickx/clipboard-image.nvim',
+        --     name = "clipboard-image",
+        --     lazy = false,
+        -- },
         {
             "catppuccin/nvim",
             name = "catppuccin",
@@ -135,15 +135,6 @@ local config = {
         -- first key is the mode
         n = {
             -- second key is the left side of the map
-            -- ["<leader>n"] = { desc = "Neorg" },
-            -- ["<leader>ni"] = { "<cmd>Neorg index<cr>", desc = "Neorg index"},
-            ["<leader>i"] = {
-                function ()
-                    require('clipboard-image.paste').paste_img()
-                end,
-                desc = "Paste image",
-
-            },
             ["<leader>n"] = { desc = "Notes" },
             ["<leader>nd"] = {
                 function ()
@@ -168,6 +159,17 @@ local config = {
                     require('telescope.builtin').live_grep({default_text=':capex:', cwd='~/notes'})
                 end,
                 desc = "Live grep capital time reporting",
+            },
+            ["<leader>np"] = {
+                function()
+                    local filename = os.date("pasted_%Y%m%d%H%M%S.png")
+                    vim.cmd(string.format("!pngpaste ~/notes/img/%s", filename))
+                    local pos = vim.api.nvim_win_get_cursor(0)[2]
+                    local line = vim.api.nvim_get_current_line()
+                    local nline = line:sub(0, pos) .. string.format("![](../img/%s)", filename) .. line:sub(pos+1)
+                    vim.api.nvim_set_current_line(nline)
+                end,
+                desc = "Paste image",
             },
             ["<leader>P"] = {
                 function()
