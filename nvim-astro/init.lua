@@ -171,6 +171,17 @@ local config = {
                 end,
                 desc = "Paste image",
             },
+            ["<leader>nx"] = {
+                function ()
+                    local line = vim.api.nvim_get_current_line()
+                    if string.match(line, ' [[] ] ') ~= nil then
+                        vim.cmd('s/ \\[ \\] / [x] /')
+                    elseif string.match(line, ' [[]x] ') ~= nil then
+                        vim.cmd('s/ \\[x\\] / [ ] /')
+                    end
+                end,
+                desc = "Toggle task as done",
+            },
             ["<leader>P"] = {
                 function()
                     local p = require('peek')
