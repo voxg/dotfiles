@@ -2,6 +2,15 @@
 
 This is a repo for my personal configuration files, starting with Neovim.
 
+# Homebrew
+
+Separate files per OS type, in `brew/$OS/Brewfile`. CWD into the appropriate directory and:
+
+```shell
+brew bundle dump # Creates the Brewfile
+brew bundle install # Installs crap from the Brewfile
+```
+
 # Neovim
 
 I was using AstroNvim, which was really cool but had serious problems editing

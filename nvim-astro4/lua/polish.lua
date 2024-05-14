@@ -15,6 +15,8 @@
 --  },
 --}
 --
-require('nvim-autopairs').setup({
+require("nvim-autopairs").setup {
   disable_filetype = { "TelescopePrompt", "ps1" },
-})
+}
+
+require("lspconfig").powershell_es.setup { settings = { powershell = { codeFormatting = { Preset = "OTBS" } } } }

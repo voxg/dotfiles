@@ -34,12 +34,12 @@ return {
         scrolloff = 4,
         sidescrolloff = 6,
 
-        encoding = 'utf8',
-        fileencoding = 'utf8',
+        encoding = "utf8",
+        fileencoding = "utf8",
 
-        syntax = 'ON',
+        syntax = "ON",
         termguicolors = true,
-        guifont = 'FiraCode Nerd Font Mono',
+        guifont = "FiraCode Nerd Font Mono",
 
         ignorecase = true,
         smartcase = true,
@@ -56,7 +56,7 @@ return {
 
         timeoutlen = 300,
 
-        showbreak = "└─"
+        showbreak = "└─",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -90,69 +90,62 @@ return {
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
         ["<Leader>nd"] = {
-          function ()
-            vim.cmd(os.date("edit ~/notes/journals/%Y-%m-%d.md"))
-          end,
+          function() vim.cmd(os.date "edit ~/notes/journals/%Y-%m-%d.md") end,
           desc = "Edit today's journal",
         },
         ["<Leader>n"] = { desc = "Notes" },
-          ["<leader>nt"] = {
-            function()
-              require('telescope.builtin').live_grep({default_text='\\[ \\]', cwd='~/notes'})
-            end,
-            desc = "Live grep to-do items",
-          },
-          ["<leader>nu"] = {
-            function()
-              require('telescope.builtin').live_grep({default_text=':(ups|downs):', cwd='~/notes'})
-            end,
-            desc = "Live grep ups and downs",
-          },
-          ["<leader>nc"] = {
-            function()
-              require('telescope.builtin').live_grep({default_text=':capex:', cwd='~/notes'})
-            end,
-            desc = "Live grep capital time reporting",
-          },
-          ["<leader>np"] = {
-            function()
-              local filename = os.date("pasted_%Y%m%d%H%M%S.png")
-              vim.cmd(string.format("!pngpaste ~/notes/img/%s", filename))
-              local pos = vim.api.nvim_win_get_cursor(0)[2]
-              local line = vim.api.nvim_get_current_line()
-              local nline = line:sub(0, pos) .. string.format("![](../img/%s)", filename) .. line:sub(pos+1)
-              vim.api.nvim_set_current_line(nline)
-            end,
-            desc = "Paste image",
-          },
-          ["<leader>nx"] = {
-            function ()
-              local line = vim.api.nvim_get_current_line()
-              if string.match(line, ' [[] ] ') ~= nil then
-                vim.cmd('s/ \\[ \\] / [x] /')
-              elseif string.match(line, ' [[]x] ') ~= nil then
-                vim.cmd('s/ \\[x\\] / [ ] /')
-              end
-            end,
-            desc = "Toggle task as done",
-          },
-          ["<leader>P"] = {
-            function()
-              local p = require('peek')
-              local buf = vim.api.nvim_get_current_buf()
-              local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-              -- If the Peek preview is open, you can close it from any buffer...
-              if p.is_open() then
-                p.close()
-              else
-                -- ...but you can only start Peek from a .md buffer
-                if ft == 'markdown' then
-                  p.open()
-                end
-              end
-            end,
-            desc = "Toggle Markdown Peek"
-          },
+        ["<leader>nt"] = {
+          function() require("telescope.builtin").live_grep { default_text = "\\[ \\]", cwd = "~/notes" } end,
+          desc = "Live grep to-do items",
+        },
+        ["<leader>nu"] = {
+          function() require("telescope.builtin").live_grep { default_text = ":(ups|downs):", cwd = "~/notes" } end,
+          desc = "Live grep ups and downs",
+        },
+        ["<leader>nc"] = {
+          function() require("telescope.builtin").live_grep { default_text = ":capex:", cwd = "~/notes" } end,
+          desc = "Live grep capital time reporting",
+        },
+        ["<leader>np"] = {
+          function()
+            local filename = os.date "pasted_%Y%m%d%H%M%S.png"
+            vim.cmd(string.format("!pngpaste ~/notes/img/%s", filename))
+            local pos = vim.api.nvim_win_get_cursor(0)[2]
+            local line = vim.api.nvim_get_current_line()
+            local nline = line:sub(0, pos) .. string.format("![](../img/%s)", filename) .. line:sub(pos + 1)
+            vim.api.nvim_set_current_line(nline)
+          end,
+          desc = "Paste image",
+        },
+        ["<leader>nx"] = {
+          function()
+            local line = vim.api.nvim_get_current_line()
+            if string.match(line, " [[] ] ") ~= nil then
+              vim.cmd "s/ \\[ \\] / [x] /"
+            elseif string.match(line, " [[]x] ") ~= nil then
+              vim.cmd "s/ \\[x\\] / [ ] /"
+            end
+          end,
+          desc = "Toggle task as done",
+        },
+        ["<leader>P"] = {
+          function()
+            local p = require "peek"
+            local buf = vim.api.nvim_get_current_buf()
+            local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+            -- If the Peek preview is open, you can close it from any buffer...
+            if p.is_open() then
+              p.close()
+            else
+              -- ...but you can only start Peek from a .md buffer
+              if ft == "markdown" then p.open() end
+            end
+          end,
+          desc = "Toggle Markdown Peek",
+        },
+        ["<leader>r"] = {
+          function() require("replacer").run() end,
+        },
       },
       t = {
         -- setting a mapping to false will disable it
