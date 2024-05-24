@@ -14,5 +14,7 @@ return {
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.markdown-and-latex.peek-nvim" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.colorscheme.cyberdream-nvim" },
   -- import/override with your plugins folder
 }
