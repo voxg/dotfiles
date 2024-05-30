@@ -34,6 +34,7 @@ config.leader = { key = ":", mods = "CTRL|SHIFT" }
 
 if wezterm.target_triple:find("windows") then
 	config.prefer_egl = true
+	config.default_prog = { "powershell" }
 end
 
 config.keys = {
