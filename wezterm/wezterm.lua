@@ -32,6 +32,10 @@ config.disable_default_key_bindings = true
 
 config.leader = { key = ":", mods = "CTRL|SHIFT" }
 
+if wezterm.target_triple:find("windows") then
+	config.prefer_egl = true
+end
+
 config.keys = {
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
