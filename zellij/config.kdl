@@ -28,14 +28,18 @@ keybinds {
         bind "k" "Up" { MoveFocus "Up"; }
         bind "p" { SwitchFocus; }
         bind "n" { NewPane; SwitchToMode "Normal"; }
+        bind "N" { Run "pwsh"; SwitchToMode "Normal"; }
         bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "D" { Run "pwsh" { direction "Down"; }; SwitchToMode "Normal"; }
         bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "R" { Run "pwsh" { direction "Right"; }; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
+        bind "o" { Run "zellij" "attach" "nvim-notes"; SwitchToMode "Normal"; }
     }
     move {
         bind "Ctrl h" { SwitchToMode "Normal"; }

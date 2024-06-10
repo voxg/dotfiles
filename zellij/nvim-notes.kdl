@@ -1,0 +1,4 @@
+layout {
+    cwd "~/notes"
+    pane command="nvim"
+}
