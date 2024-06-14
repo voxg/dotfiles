@@ -16,5 +16,7 @@ return {
   { import = "astrocommunity.markdown-and-latex.peek-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.cyberdream-nvim" },
+  { import = "astrocommunity.motion.mini-ai" },
+  { import = "astrocommunity.motion.mini-surround" },
   -- import/override with your plugins folder
 }
