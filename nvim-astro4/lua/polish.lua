@@ -20,3 +20,6 @@ require("nvim-autopairs").setup {
 }
 
 require("lspconfig").powershell_es.setup { settings = { powershell = { codeFormatting = { Preset = "OTBS" } } } }
+
+require("mini.surround").setup()
+require("mini.ai").setup()
