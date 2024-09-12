@@ -120,13 +120,24 @@ return {
         ["<leader>nx"] = {
           function()
             local line = vim.api.nvim_get_current_line()
-            if string.match(line, " [[] ] ") ~= nil then
-              vim.cmd "s/ \\[ \\] / [x] /"
-            elseif string.match(line, " [[]x] ") ~= nil then
-              vim.cmd "s/ \\[x\\] / [ ] /"
+            if string.match(line, " [[][ -]] ") ~= nil then
+              vim.cmd "s/ \\[[ -]\\] / [x] /"
+            elseif string.match(line, " [[][x-]] ") ~= nil then
+              vim.cmd "s/ \\[[x-]\\] / [ ] /"
             end
           end,
           desc = "Toggle task as done",
+        },
+        ["<leader>nh"] = {
+          function()
+            local line = vim.api.nvim_get_current_line()
+            if string.match(line, " [[] ] ") ~= nil then
+              vim.cmd "s/ \\[ \\] / [-] /"
+            elseif string.match(line, " [[][x-]] ") ~= nil then
+              vim.cmd "s/ \\[[x-]\\] / [ ] /"
+            end
+          end,
+          desc = "Toggle task as on hold",
         },
         ["<leader>P"] = {
           function()
