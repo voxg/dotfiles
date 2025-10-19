@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 300
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -201,6 +201,10 @@ ctrl-alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+ctrl-alt-o = '''exec-and-forget ~/.config/aerospace/launch-or-focus.sh "Microsoft Outlook" "open '/Applications/Microsoft Outlook.app'"'''
+ctrl-alt-i = '''exec-and-forget ~/.config/aerospace/launch-or-focus.sh "Microsoft Teams" "open '/Applications/Microsoft Teams.app'"'''
+ctrl-alt-u = '''exec-and-forget ~/.config/aerospace/launch-or-focus.sh "Microsoft Edge" "open '/Applications/Microsoft Edge.app'"'''
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 ctrl-alt-semicolon = 'mode service'
 ctrl-alt-enter = 'mode edit'
@@ -231,7 +235,7 @@ f = [
     'layout floating tiling',
     'mode main',
 ] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+#backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
