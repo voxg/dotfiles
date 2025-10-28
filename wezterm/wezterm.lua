@@ -16,9 +16,11 @@ config.inactive_pane_hsb = {
 	brightness = 0.6,
 }
 
+config.hide_tab_bar_if_only_one_tab = true
+
 config.color_scheme = "GitHub Dark"
 
-config.window_background_opacity = 1.0
+config.window_background_opacity = 0.8
 
 wezterm.on("update-right-status", function(window, pane)
 	local name = window:active_key_table()
