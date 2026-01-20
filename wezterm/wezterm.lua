@@ -1,8 +1,25 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local act = wezterm.action
 local config = {}
 
 config.font = wezterm.font("FiraCode Nerd Font Mono")
+
+wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
+	local workspace = string.format("[%s] ", mux.get_active_workspace())
+	if workspace == "[default] " then
+		workspace = ""
+	end
+	local zoomed = ""
+	if pane.is_zoomed then
+		zoomed = "[Z] "
+	end
+	local index = ""
+	if #tabs > 1 then
+		index = string.format("[%d/%d] ", tab.tab_index + 1, #tabs)
+	end
+	return workspace .. zoomed .. index .. tab.active_pane.title
+end)
 
 config.launch_menu = {
 	{
@@ -20,7 +37,7 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.color_scheme = "GitHub Dark"
 
-config.window_background_opacity = 0.8
+config.window_background_opacity = 1
 
 wezterm.on("update-right-status", function(window, pane)
 	local name = window:active_key_table()
@@ -32,7 +49,7 @@ end)
 
 config.disable_default_key_bindings = true
 
-config.leader = { key = ":", mods = "CTRL|SHIFT" }
+config.leader = { key = ";", mods = "SUPER", timeout_milliseconds = 1000 }
 
 if wezterm.target_triple:find("windows") then
 	config.prefer_egl = true
@@ -116,8 +133,6 @@ config.keys = {
 	{ key = "P", mods = "SHIFT|CTRL", action = act.ActivateCommandPalette },
 	{ key = "Q", mods = "CTRL", action = act.QuitApplication },
 	{ key = "Q", mods = "SHIFT|CTRL", action = act.QuitApplication },
-	{ key = "R", mods = "CTRL", action = act.ReloadConfiguration },
-	{ key = "R", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
 	{ key = "T", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "T", mods = "SHIFT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
 	{
@@ -131,13 +146,6 @@ config.keys = {
 		action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
 	},
 	{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
-	{ key = "V", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
-	{ key = "W", mods = "CTRL", action = act.CloseCurrentTab({ confirm = true }) },
-	{ key = "W", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = true }) },
-	{ key = "X", mods = "CTRL", action = act.ActivateCopyMode },
-	{ key = "X", mods = "SHIFT|CTRL", action = act.ActivateCopyMode },
-	{ key = "Z", mods = "CTRL", action = act.TogglePaneZoomState },
-	{ key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
 	{ key = "[", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(-1) },
 	{ key = "]", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(1) },
 	{ key = "^", mods = "CTRL", action = act.ActivateTab(5) },
