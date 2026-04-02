@@ -23,4 +23,5 @@ return {
   -- { import = "astrocommunity.motion.mini-ai" },
   -- { import = "astrocommunity.motion.mini-surround" },
   -- import/override with your plugins folder
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
 }
